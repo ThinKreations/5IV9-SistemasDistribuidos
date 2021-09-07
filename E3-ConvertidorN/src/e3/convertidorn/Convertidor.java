@@ -100,13 +100,15 @@ public class Convertidor extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCalc, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField0, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))
-                        .addGap(12, 12, 12)
+                                .addComponent(jTextField0)
+                                .addGap(12, 12, 12))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnCalc, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
@@ -122,8 +124,8 @@ public class Convertidor extends javax.swing.JFrame {
                     .addComponent(jTextField0, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBorrar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnHistorial, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnHistorial, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCalc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +151,7 @@ public class Convertidor extends javax.swing.JFrame {
         for(int i=0; i<jTextField0.getText().length();i++){
             
             
-            if(cad.getCadena().charAt(i)=='A'){
+            if((cad.getCadena().charAt(i)=='A')||(cad.getCadena().charAt(i)=='Á')){
                 System.out.println("2");
                 cad.setSecuenciaF(cad.getSecuenciaF()+"2 ");
             }
@@ -165,7 +167,7 @@ public class Convertidor extends javax.swing.JFrame {
                 System.out.println("3");
                 cad.setSecuenciaF(cad.getSecuenciaF()+"3 ");
             }
-            if(cad.getCadena().charAt(i)=='E'){
+            if((cad.getCadena().charAt(i)=='E')||(cad.getCadena().charAt(i)=='É')){
                 System.out.println("33");
                 cad.setSecuenciaF(cad.getSecuenciaF()+"33 ");
             }
@@ -181,7 +183,7 @@ public class Convertidor extends javax.swing.JFrame {
                 System.out.println("44");    
                 cad.setSecuenciaF(cad.getSecuenciaF()+"44 ");
             }
-            if(cad.getCadena().charAt(i)=='I'){
+            if((cad.getCadena().charAt(i)=='I')||(cad.getCadena().charAt(i)=='Í')){
                 System.out.println("444");
                 cad.setSecuenciaF(cad.getSecuenciaF()+"444 ");
             }
@@ -205,7 +207,7 @@ public class Convertidor extends javax.swing.JFrame {
                 System.out.println("66");
                 cad.setSecuenciaF(cad.getSecuenciaF()+"66 ");
             }
-            if(cad.getCadena().charAt(i)=='O'){
+            if((cad.getCadena().charAt(i)=='O')||(cad.getCadena().charAt(i)=='Ó')){
                 System.out.println("666");
                 cad.setSecuenciaF(cad.getSecuenciaF()+"666 ");
             }
@@ -229,7 +231,7 @@ public class Convertidor extends javax.swing.JFrame {
                 System.out.println("8");
                 cad.setSecuenciaF(cad.getSecuenciaF()+"8 ");
             }
-            if(cad.getCadena().charAt(i)=='U'){
+            if((cad.getCadena().charAt(i)=='U')||(cad.getCadena().charAt(i)=='Ú')){
                 System.out.println("88");
                 cad.setSecuenciaF(cad.getSecuenciaF()+"88 ");
             }
