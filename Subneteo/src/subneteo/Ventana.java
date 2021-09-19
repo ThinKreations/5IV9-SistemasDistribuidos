@@ -5,7 +5,7 @@
  */
 package subneteo;
 
-import java.lang.reflect.Method;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class Ventana extends javax.swing.JFrame {
 
-    public int i,j,m1,m2,m3,m4,n,nF,k,y,m,l=0,cero;
+    public int i,j,m1,m2,m3,m4,n,nF,k,y,m,l,cero, p3;
     
     public String bi1,bi2,bi3,bi4,bm1,bm2,bm3,bm4,bm0,m0,x;
     public char tipo;
@@ -518,9 +518,11 @@ public class Ventana extends javax.swing.JFrame {
                 if(tipo=='A'){
                     bm2="11111111";
                     bm3="11100000";
+                    m=224;
                 }else if(tipo=='B'){
                     bm3="11111111";
-                    bm4="11100000";    
+                    bm4="11100000"; 
+                    m=224;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     
@@ -530,9 +532,11 @@ public class Ventana extends javax.swing.JFrame {
                 if(tipo=='A'){
                     bm2="11111111";
                     bm3="11110000";
+                    m=240;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="11110000";    
+                    m=240;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     
@@ -542,36 +546,39 @@ public class Ventana extends javax.swing.JFrame {
                 if(tipo=='A'){
                     bm2="11111111";
                     bm3="11111000";
-                    
+                    m=248;
                 }else if(tipo=='B'){
                     bm3="11111111";
-                    bm4="11111000";    
+                    bm4="11111000";
+                    m=248;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break;
             case 14:
                 if(tipo=='A'){
                     bm2="11111111";
                     bm3="11111100";
-                    
+                    m=252;
                 }else if(tipo=='B'){
                     bm3="11111111";
-                    bm4="11111100";    
+                    bm4="11111100"; 
+                    m=252;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break; 
             case 15:
                 if(tipo=='A'){
                     bm2="11111111";
                     bm3="11111110";
-                    
+                    m=254;
                 }else if(tipo=='B'){
                     bm3="11111111";
-                    bm4="11111110";    
+                    bm4="11111110";  
+                    m=254;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     
@@ -581,13 +588,14 @@ public class Ventana extends javax.swing.JFrame {
                 if(tipo=='A'){
                     bm2="11111111";
                     bm3="11111111";
-                    
+                    m=255;
                 }else if(tipo=='B'){
                     bm3="11111111";
-                    bm4="11111111";    
+                    bm4="11111111";
+                    m=255;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break;   
             case 17:
@@ -595,12 +603,13 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="10000000";
+                    m=128;
                 } else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break;
             case 18:
@@ -608,12 +617,13 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="11000000";
+                    m=196;
                 } else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break;
             case 19:
@@ -621,12 +631,13 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="11100000";
+                    m=224;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 } 
                 break;
             case 20:
@@ -634,12 +645,13 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="11110000";
+                    m=240;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break;    
             case 21:
@@ -647,12 +659,13 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="11111000";
+                    m=248;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 } 
                 break;      
             case 22:
@@ -660,12 +673,13 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="11111100";
+                    m=252;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 } 
                 break;  
             case 23:
@@ -673,12 +687,13 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="11111110";
+                    m=254;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 } 
                 break;   
             case 24:
@@ -686,12 +701,13 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="11111111";
+                    m=255;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 } 
                 break; 
             
@@ -703,21 +719,32 @@ public class Ventana extends javax.swing.JFrame {
               return;
         }  
         
+        p3=256-m;
         
+        while(p3>0){
+            p3--;
+            System.out.println(p3);
+        }
         
         bm0=(bm1+"."+bm2+"."+bm3+"."+bm4);
         v.setMask0(bm0);
         v.setIp0(bi1+"."+bi2+"."+bi3+"."+bi4);
         
-
-        
-        JOptionPane.showMessageDialog(null,l+", "+cero);
+    
         System.out.println(v.getIp1()+"."+v.getIp2()+"."+v.getIp3()+"."+v.getIp4());
         System.out.println(v.getType()+" = "+tipo);
         System.out.println(v.getSub());
         System.out.println(bm0);
         System.out.println(bi1+"."+bi2+"."+bi3+"."+bi4);
-        
+        if(tipo=='D'){
+            JOptionPane.showMessageDialog(null,"Tipo de Red No permitida (D)");
+            borrar();
+            return;
+        }else if(tipo=='E'){
+            JOptionPane.showMessageDialog(null,"Tipo de Red No permitida (E)");
+            borrar();
+            return;
+        }
         jTextArea0.setText("Clase: "+tipo+"\nIP en binario: "+v.getIp0()+"\nMáscara en binario: "+v.getMask()+"\nBits Robados="+n+"\n→ "+v.getMask0());      
         
     }//GEN-LAST:event_btnSubnetActionPerformed
