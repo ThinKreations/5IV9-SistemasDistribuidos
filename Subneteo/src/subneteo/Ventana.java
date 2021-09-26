@@ -6,6 +6,8 @@
 package subneteo;
 
 
+
+import static java.lang.Thread.sleep;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,11 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class Ventana extends javax.swing.JFrame {
 
-    public int i,j,m1,m2,m3,m4,n,nF,k,y,m,l,cero, p3;
-    
-    public String bi1,bi2,bi3,bi4,bm1,bm2,bm3,bm4,bm0,m0,x;
+    public int i,j,m1,m2,m3,m4,n,nb1,nF,k,y,m,l,cero,f,p3,xd=1,ñ,s,all,res,num,num1,num2,div,num3,no,o;
+    public boolean alto=false;
+    public String bi1,bi2,bi3,bi4,bm1,bm2,bm3,bm4,bm0,m0,x,nb0,ff;
     public char tipo;
+    public float si=(float) 0.5,ññ;
     //MI CÓDIGO ES UN COMPLETO DESASTRE AAAAA, PERO FUNCIONA
+    //NO ME MATE SI NO USÉ "FOR" PARA LOS BUCLES JAJAJ, POR UN MOTIVO QUE DESCONOZCO YA NO ME FUNCIONAN EN ESTE NI EN NINGÚN OTRO PROGRAMA D:
     /**
      * Creates new form Ventana
      */
@@ -39,6 +43,7 @@ public class Ventana extends javax.swing.JFrame {
         jTextsub.setText("");
         jTextField1.setText("");
         jTextArea0.setText("");
+        jTextArea1.setText("");
     }
     
     
@@ -68,6 +73,8 @@ public class Ventana extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         btnBorrar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,7 +120,8 @@ public class Ventana extends javax.swing.JFrame {
 
         jTextArea0.setColumns(20);
         jTextArea0.setRows(5);
-        jTextArea0.setBorder(javax.swing.BorderFactory.createTitledBorder("Subneteo"));
+        jTextArea0.setBorder(javax.swing.BorderFactory.createTitledBorder("Info"));
+        jTextArea0.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea0);
 
         jLabel6.setText("Máscara:");
@@ -137,15 +145,22 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder("Rango/Host"));
+        jTextArea1.setFocusable(false);
+        jScrollPane2.setViewportView(jTextArea1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3))
@@ -173,13 +188,11 @@ public class Ventana extends javax.swing.JFrame {
                                 .addGap(15, 15, 15)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnSubnet, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE))
+                            .addComponent(btnSubnet, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +221,9 @@ public class Ventana extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnBorrar)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -241,6 +256,10 @@ public class Ventana extends javax.swing.JFrame {
             return;
         }
         
+        if(v.getSub()==0){
+            JOptionPane.showMessageDialog(null,"El número mínimo de subredes es 1");
+            return;
+        }
 
         if((v.getIp1()<0)||(v.getIp2()<0)||(v.getIp3()<0)||(v.getIp4()<0)||(v.getSub()<0)){
             JOptionPane.showMessageDialog(null, "Ingresa sólo positivos");
@@ -373,8 +392,9 @@ public class Ventana extends javax.swing.JFrame {
             x="0"+x;
         }
         nF=0;
-        while((nF!=x.length())&&(x.charAt(nF)!='1')){
+        while((nF!=x.length()+1)&&(x.charAt(nF)!='1')){
             nF++;
+            
         }
         
         System.out.println(bi1+"."+bi2+"."+bi3+"."+bi4);
@@ -382,107 +402,231 @@ public class Ventana extends javax.swing.JFrame {
         nF=nF++;
         n=x.length()-nF;
         
+        if(v.getSub()==1){
+            n=0;
+        }
+        if(v.getSub()==2){
+            n=1;
+        }
+        if(v.getSub()==4){
+            n=2;
+        }
+        if(v.getSub()==8){
+            n=3;
+        }
+        if(v.getSub()==16){
+            n=4;
+        }
+        if(v.getSub()==32){
+            n=5;
+        }
+        if(v.getSub()==64){
+            n=6;
+        }
+        if(v.getSub()==128){
+            n=7;
+        }
+        if(v.getSub()==256){
+            n=8;
+        }
+        if(v.getSub()==512){
+            n=9;
+        }
+        if(v.getSub()==1024){
+            n=10;
+        }
+        if(v.getSub()==2048){
+            n=11;
+        }
+        if(v.getSub()==4096){
+            n=12;
+        }
+        if(v.getSub()==8192){
+            n=13;
+        }
+        if(v.getSub()==16384){
+            n=14;
+        }
+        if(v.getSub()==32768){
+            n=15;
+        }
+        if(v.getSub()==65536){
+            n=16;
+        }
+        if(v.getSub()==131072){
+            n=17;
+        }
+        if(v.getSub()==262144){
+            n=18;
+        }
+        if(v.getSub()==524288){
+            n=19;
+        }
+        if(v.getSub()==1048576){
+            n=20;
+        }
+        if(v.getSub()==2097152){
+            n=21;
+        }
+        if(v.getSub()==4194304){
+            n=22;
+        }
+        if(v.getSub()==8388608){
+            n=23;
+        }
         System.out.println(x);
         System.out.println(nF);
         System.out.println("N= "+n);
         
+        ff="0";
+        
         switch(n){
             case 0:
+                if(tipo=='A'){
+                    bm2="00000000";
+                    m=255;
+                    ñ=24;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
+                }else if(tipo=='B'){
+                    bm3="00000000";
+                    m=255;
+                    ñ=16;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
+                }else if(tipo=='C'){
+                    bm4="00000000";
+                    m=255;
+                    ñ=8;
+                    xd=(2*2*2*2*2*2*2*2*2)-2;
+                }
                 break;
+                
             case 1:
                 if(tipo=='A'){
                     bm2="10000000";
                     m=128;
+                    ñ=23;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="10000000";
                     m=128;
+                    ñ=15;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     bm4="10000000";
                     m=128;
+                    ñ=7;
+                    xd=(2*2*2*2*2*2*2*2)-2;
                 }
                     break;
             case 2:
                 if(tipo=='A'){
                     bm2="11000000";
                     m=192;
+                    ñ=22;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11000000";
                     m=192;
+                    ñ=14;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     bm4="11000000";
                     m=192;
+                    ñ=6;
+                    xd=(2*2*2*2*2*2*2)-2;
                 }
                     break;
             case 3:
                 if(tipo=='A'){
                     bm2="11100000";
                     m=224;
+                  
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11100000";
                     m=224;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     bm4="11100000";
                     m=224;
+                    xd=(2*2*2*2*2*2)-2;
                 }
                     break;
             case 4:
                 if(tipo=='A'){
                     bm2="11110000";
                     m=240;
+                   
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11110000";
                     m=240;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     bm4="11110000";
                     m=240;
+                    xd=(2*2*2*2*2)-2;
                 }
                     break;
             case 5:
                 if(tipo=='A'){
                     bm2="11111000";
                     m=248;
+                    
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111000";
                     m=248;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     bm4="11111000";
                     m=248;
+                    xd=(2*2*2*2)-2;
                 }
                     break;    
             case 6:
                 if(tipo=='A'){
                     bm2="11111100";
                     m=252;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111100";
                     m=252;
+                    xd=(2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     bm4="11111100";
                     m=252;
+                    xd=(2*2*2)-2;
                 }
                     break;
                 case 7:
                 if(tipo=='A'){
                     bm2="11111110";
                     m=254;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111110";
                     m=254;
+                    xd=(2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     bm4="11111110";
                     m=254;
+                    xd=(2*2)-2;
                 }
                     break;
             case 8:
                 if(tipo=='A'){
                     bm2="11111111";
                     m=255;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     m=255;
+                    xd=(2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     bm4="11111111";
                     m=255;
+                    xd=xd=(2-1);
                 }
                     break;
             
@@ -491,13 +635,15 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="10000000";
                     m=128;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="10000000";
                     m=128;
+                    xd=(2*2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                   
+                   return;
                 }
                 break;
             case 10:
@@ -505,13 +651,15 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11000000";
                     m=192;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="11000000";
                     m=192;
+                    xd=(2*2*2*2*2*2)-2;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break;
             case 11:
@@ -519,13 +667,14 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11100000";
                     m=224;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="11100000"; 
                     m=224;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break;
             case 12:
@@ -533,13 +682,14 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11110000";
                     m=240;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="11110000";    
                     m=240;
                 }else if(tipo=='C'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
-                    
+                    return;
                 }
                 break;
             case 13:
@@ -547,6 +697,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111000";
                     m=248;
+                    xd=(2*2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="11111000";
@@ -561,6 +712,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111100";
                     m=252;
+                    xd=(2*2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="11111100"; 
@@ -575,6 +727,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111110";
                     m=254;
+                    xd=(2*2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="11111110";  
@@ -589,6 +742,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     m=255;
+                    xd=(2*2*2*2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     bm3="11111111";
                     bm4="11111111";
@@ -604,6 +758,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm3="11111111";
                     bm4="10000000";
                     m=128;
+                    xd=(2*2*2*2*2*2*2)-2;
                 } else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     return;
@@ -617,7 +772,8 @@ public class Ventana extends javax.swing.JFrame {
                     bm2="11111111";
                     bm3="11111111";
                     bm4="11000000";
-                    m=196;
+                    m=192;
+                    xd=(2*2*2*2*2*2)-2;
                 } else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     return;
@@ -632,6 +788,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm3="11111111";
                     bm4="11100000";
                     m=224;
+                    xd=(2*2*2*2*2)-2;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     return;
@@ -646,6 +803,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm3="11111111";
                     bm4="11110000";
                     m=240;
+                    xd=(2*2*2*2)-2;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     return;
@@ -660,6 +818,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm3="11111111";
                     bm4="11111000";
                     m=248;
+                    xd=(2*2*2)-2;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     return;
@@ -674,6 +833,8 @@ public class Ventana extends javax.swing.JFrame {
                     bm3="11111111";
                     bm4="11111100";
                     m=252;
+                    xd=(2*2)-2;
+
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     return;
@@ -688,6 +849,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm3="11111111";
                     bm4="11111110";
                     m=254;
+                    xd=(2)-2;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     return;
@@ -702,6 +864,7 @@ public class Ventana extends javax.swing.JFrame {
                     bm3="11111111";
                     bm4="11111111";
                     m=255;
+                    xd=0;
                 }else if(tipo=='B'){
                     JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
                     return;
@@ -713,17 +876,23 @@ public class Ventana extends javax.swing.JFrame {
             
         }
         
+        nb0=Integer.toBinaryString(n);
+        while(nb0.length()<=7){
+            nb0="0"+nb0;
+        }
+        
         if(n>24){
               JOptionPane.showMessageDialog(null,"Las subredes superal en límite.");
               
               return;
         }  
         
-        p3=256-m;
+        p3=256-m-1;    
         
-        while(p3>0){
-            p3--;
-            System.out.println(p3);
+        f=(p3+1);
+        ff=Integer.toBinaryString(f);
+        while(ff.length()<=7){
+            ff="0"+ff;
         }
         
         bm0=(bm1+"."+bm2+"."+bm3+"."+bm4);
@@ -736,6 +905,7 @@ public class Ventana extends javax.swing.JFrame {
         System.out.println(v.getSub());
         System.out.println(bm0);
         System.out.println(bi1+"."+bi2+"."+bi3+"."+bi4);
+        System.out.println(xd);
         if(tipo=='D'){
             JOptionPane.showMessageDialog(null,"Tipo de Red No permitida (D)");
             borrar();
@@ -745,10 +915,211 @@ public class Ventana extends javax.swing.JFrame {
             borrar();
             return;
         }
-        jTextArea0.setText("Clase: "+tipo+"\nIP en binario: "+v.getIp0()+"\nMáscara en binario: "+v.getMask()+"\nBits Robados="+n+"\n→ "+v.getMask0());      
+        if(v.getSub()==1){
+            p3=255;
+        }
         
+        jTextArea0.setText("Clase: "+tipo+"\nIP en binario: "+v.getIp0()+"\nMáscara en binario: "+v.getMask()+"\nBits Robados (n): "+n+" → "+nb0+"\nNueva máscara en binario: "+v.getMask0()+"\nSalto entre subredes: "+(p3+1)+"\nHosts por subred: "+xd); 
+        jTextArea1.setText("");
+        all=0;
+        s=0;
+        f=0;
+        
+        s=v.getSub();
+        if(s>=500){
+            JOptionPane.showMessageDialog(null,"ALERTA\nGrandes cantidades de subredes pueden trabar el programa, espere por favor.");
+        }
+        m1=v.getIp1();
+        m2=v.getIp2();
+        m3=v.getIp3();
+        m4=v.getIp4();
+        
+        num=1;
+        num1=0;
+        
+        f=(p3+1);
+        div=(256/f);
+        
+        jTextArea1.setText("----------------------------------------------------------------------------------------------------------\n| Primera Ip | Última Ip | Host x Subred |\n\n");
+        
+        if(tipo=='A'){
+            if(n<=8){  
+                all=0;
+                num=1;
+                
+                while(s!=0){   
+                s--;
+                y=all+1;
+                ñ=((y*f)-1);
+                if(ñ<0){
+                    ñ=0;
+                }
+                jTextArea1.setText(jTextArea1.getText()+num+" → "+v.getIp1()+"."+(all*f)+"."+0+"."+0+" | "+v.getIp1()+"."+(ñ)+"."+"255"+"."+"255"+" | "+xd+"\n");
+                try{
+                    Thread.sleep(100);
+                }catch(InterruptedException e){
+                    
+                }
+                num++;
+                all++;
+            }
+                
+            }else if((n>8)&&(n<=16)){  
+                all=0;
+                num=1;
+                num2=0;
+                s=v.getSub();
+                while(s!=0){   
+                s--;
+                
+                y=all+1;
+                div=(256/(p3+1));
+                ñ=((y*f)*num1);
+                
+                f=(p3+1)*num1;
+                si=0;             
+                o++;
+                no=((f-1)*o);
+                if(no<0){
+                    no=p3;
+                    
+                }
+                if(num>1){
+                        no=no;
+                    }
+                jTextArea1.setText(jTextArea1.getText()+num+" → "+v.getIp1()+"."+(num2)+"."+(f)+"."+0+" | "+v.getIp1()+"."+(num2)+"."+(f+(p3))+"."+"255"+" | "+xd+"\n");
+                    
+                num1++;
+                
+                if(o>=div-o){
+                    o=0;
+                }
+                
+                if(num1==div){
+                    num2++;
+                    num1=0;  
+                    si=0;
+                    
+                }else{
+                    ñ=0;
+                }
+                
+                
+                
+                
+                num++;
+                all++;
+                try{
+                    Thread.sleep(3);
+                }catch(InterruptedException e){
+                    
+                }
+            }
+            }else if((n>16)&&(n<25)){
+                JOptionPane.showMessageDialog(null,"Cantidad válida de subredes, pero es un exceso de procesos para la PC.");
+                borrar();
+                return;
+            }
+            
+        }else if(tipo=='B'){
+            if(n<=8){  
+                all=0;
+                num=1;
+                
+                while(s!=0){   
+                s--;
+                y=all+1;
+                ñ=((y*f)-1);
+                if(ñ<0){
+                    ñ=0;
+                }
+                jTextArea1.setText(jTextArea1.getText()+num+" → "+v.getIp1()+"."+v.getIp2()+"."+(all*f)+"."+0+" | "+v.getIp1()+"."+v.getIp2()+"."+ñ+"."+"255"+" | "+xd+"\n");
+                try{
+                    Thread.sleep(3);
+                }catch(InterruptedException e){
+                    
+                }
+                num++;
+                all++;
+            }
+            }else if((n>8)&&(n<=16)){
+                    all=0;
+                num=1;
+                num2=0;
+                s=v.getSub();
+                while(s!=0){   
+                s--;
+                
+                y=all+1;
+                div=(256/(p3+1));
+                ñ=((y*f)*num1);
+                
+                f=(p3+1)*num1;
+                si=0;             
+                o++;
+                no=((f-1)*o);
+                if(no<0){
+                    no=p3;
+                    
+                }
+                if(num>1){
+                        no=no;
+                    }
+                jTextArea1.setText(jTextArea1.getText()+num+" → "+v.getIp1()+"."+(v.getIp2())+"."+(num2)+"."+f+" | "+v.getIp1()+"."+v.getIp2()+"."+v.getIp3()+"."+(f+(p3))+" | "+xd+"\n");
+                    
+                num1++;
+                
+                if(o>=div-o){
+                    o=0;
+                }
+                
+                if(num1==div){
+                    num2++;
+                    num1=0;  
+                    si=0;
+                    
+                }else{
+                    ñ=0;
+                }
+
+                
+                num++;
+                all++;
+                try{
+                    Thread.sleep(3);
+                }catch(InterruptedException e){
+                    
+                }
+            }
+            }
+            }else if(tipo=='C'){
+            if(n<=8){  
+                all=0;
+                num=1;
+                
+                while(s!=0){   
+                s--;
+                y=all+1;
+                ñ=((y*f)-1);
+                if(ñ<0){
+                    ñ=0;
+                }
+                jTextArea1.setText(jTextArea1.getText()+num+" → "+v.getIp1()+"."+v.getIp2()+"."+v.getIp3()+"."+(all*f)+" | "+v.getIp1()+"."+v.getIp2()+"."+v.getIp3()+"."+ñ+" | "+xd+"\n");
+                try{
+                    Thread.sleep(3);
+                }catch(InterruptedException e){
+                    
+                }
+                num++;
+                all++;
+            }
+            }
+            }
+        jTextArea1.setText(jTextArea1.getText()+"\n----------------------------------------------------------------------------------------------------------");
     }//GEN-LAST:event_btnSubnetActionPerformed
 
+    
+    
     private void jTextsubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextsubActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextsubActionPerformed
@@ -806,7 +1177,9 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea0;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextip1;
     private javax.swing.JTextField jTextip2;
